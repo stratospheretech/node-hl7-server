@@ -1,4 +1,5 @@
 import { Message } from "node-hl7-client";
+import { Socket } from "node:net";
 import { HL7ListenerError } from "../../utils/exception.js";
 
 /**
@@ -18,15 +19,29 @@ export class InboundRequest {
   private readonly _message?: Message;
   /** @internal */
   private readonly _fromType: string;
+  /** @internal */
+  private readonly _socket: Socket;
+
+  public get message() {
+    return this._message;
+  }
+  public get fromType() {
+    return this._fromType;
+  }
+  public get socket() {
+    return this._socket;
+  }
 
   /**
    * @since 1.0.0
    * @param message
    * @param props
+   * @param socket
    */
-  constructor(message: Message, props: InboundRequestProps) {
+  constructor(message: Message, props: InboundRequestProps, socket: Socket) {
     this._fromType = props.type;
     this._message = message;
+    this._socket = socket;
   }
 
   /** '
@@ -42,5 +57,9 @@ export class InboundRequest {
 
   getType(): string {
     return this._fromType;
+  }
+
+  getSocket(): Socket {
+    return this._socket;
   }
 }

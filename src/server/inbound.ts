@@ -193,7 +193,11 @@ export class Inbound extends EventEmitter implements Inbound {
               // increase the total message
               ++this.stats.totalMessage;
               // create the inbound request
-              const req = new InboundRequest(messageParsed, { type: "file" });
+              const req = new InboundRequest(
+                messageParsed,
+                { type: "file" },
+                socket,
+              );
               // create the send response function
               const res = new SendResponse(
                 socket,
@@ -218,7 +222,11 @@ export class Inbound extends EventEmitter implements Inbound {
               // increase the total message
               ++this.stats.totalMessage;
               // create the inbound request
-              const req = new InboundRequest(messageParsed, { type: "file" });
+              const req = new InboundRequest(
+                messageParsed,
+                { type: "file" },
+                socket,
+              );
               // create the send response function
               const res = new SendResponse(
                 socket,
@@ -234,7 +242,11 @@ export class Inbound extends EventEmitter implements Inbound {
             // increase the total message
             ++this.stats.totalMessage;
             // create the inbound request
-            const req = new InboundRequest(messageParsed, { type: "file" });
+            const req = new InboundRequest(
+              messageParsed,
+              { type: "file" },
+              socket,
+            );
             // create the send response function
             const res = new SendResponse(
               socket,
